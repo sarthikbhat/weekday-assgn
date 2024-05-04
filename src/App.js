@@ -1,38 +1,33 @@
+import React, { useState } from "react";
 import { useEffect } from "react";
 import "./App.css";
 import Filters from "./components/Filters/Filters";
 import Header from "./components/Header/Header";
+import Jobs from "./components/Jobs/Jobs";
+
+const defaultFilterValue = {
+  roles: [],
+  employees: [],
+  experience: -1,
+  salary: -1,
+  remote: [],
+  tech_stack: [],
+  companies: "",
+};
 
 function App() {
-  // useEffect(() => {
-  //   const myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/json");
+  const [filterValues, setFilterValues] = useState(defaultFilterValue);
 
-  //   const body = JSON.stringify({
-  //     limit: 10,
-  //     offset: 0,
-  //   });
-
-  //   const requestOptions = {
-  //     method: "POST",
-  //     headers: myHeaders,
-  //     body,
-  //   };
-
-  //   fetch(
-  //     "https://api.weekday.technology/adhoc/getSampleJdJSON",
-  //     requestOptions
-  //   )
-  //     .then((response) => response.json())
-  //     .then((result) => console.log(result))
-  //     .catch((error) => console.error(error));
-  // }, []);
+  const sendDataToComp = (values) => {
+    setFilterValues({...values});
+  };
 
   return (
-    <>
+    <main>
       <Header />
-      <Filters />
-    </>
+      <Filters sendDataToComp={sendDataToComp} />
+      <Jobs filters={filterValues} />
+    </main>
   );
 }
 

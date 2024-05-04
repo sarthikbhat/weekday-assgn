@@ -1,27 +1,23 @@
+/* CustomInput Component */
+
 .custom-input-box {
   display: flex;
   flex-direction: column;
   position: relative;
+  min-width: 160px;
 }
 
-/* .select {
-  min-height: 38px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid rgb(204, 204, 204);
-  border-radius: 3px;
-  min-width: 100px;
-} */
-
-.select{
+.select {
   font-size: 12px;
   font-weight: 300;
 }
 
-.select::placeholder{
+.select::placeholder {
   font-size: 14px;
+}
+
+.caps{
+  text-transform: capitalize;
 }
 
 .input-comp-name {
@@ -51,7 +47,6 @@
 input::placeholder {
   flex: 1;
   font-size: 12px;
-  /* min-width: fit-content; */
   font-weight: 300;
   margin-left: 15px;
 }
@@ -81,15 +76,145 @@ input::placeholder {
   color: rgb(204, 204, 204) !important;
 }
 
-p {
+.label {
   margin: 0;
   padding: 0;
   position: absolute;
-  top: -50%;
+  top: -18px;
   left: 0;
   font-size: 12px;
 }
 
 .select-values {
   flex: 1;
+}
+
+/* Card Component */
+
+.card-outer {
+  padding: 20px;
+  border-radius: 15px;
+  width: 27%;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between !important;
+  /* align-items: center; */
+  gap: 1rem;
+}
+
+.card-outer:hover {
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.01);
+}
+
+.company-header {
+  display: flex;
+  gap: 1rem;
+}
+
+.company-header img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.company-text-details {
+  display: flex;
+  flex-direction: column;
+  /* gap: 10px; */
+}
+
+.comp-info > h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+  color: #8b8b8b;
+}
+
+h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #8b8b8b;
+}
+
+.comp-info > h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.company-text-details > p {
+  margin: 0;
+  margin-bottom: 0px;
+  font-size: 11px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.estimated-salary {
+  font-size: 13px;
+  color: #8b8b8b;
+}
+
+.posted-time {
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.job-desc-header {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+}
+
+.job-desc {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+  color: #8b8b8b;
+  font-weight: 300;
+  height: 250px;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    rgb(255, 255, 255),
+    rgb(255, 255, 255),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.min-exp {
+  margin: 0;
+  font-weight: 200;
+  font-size: 14px;
+}
+
+.apply-button {
+  background-color: #54efc3;
+  outline: 0;
+  border: 0;
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.referral-button {
+  background-color: #4943da;
+}
+
+.show-more {
+  color: #4943da;
+  font-size: 13px;
+  text-align: center;
+  margin-top: -5%;
+  cursor: pointer;
 }

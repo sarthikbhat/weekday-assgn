@@ -1,7 +1,8 @@
 .filter-outer-box{
-    margin: 2%;
+    margin: 2% 4%;
     margin-top: 2.5%;
     display: flex;
-    gap: 10px;
+    gap: 25px;
+    flex-wrap: wrap;
 }
 

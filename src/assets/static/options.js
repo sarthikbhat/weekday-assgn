@@ -1,7 +1,113 @@
 export const options = {
-  roles: {
-    engineering: [],
-  },
+  roles: [
+    {
+      label: "Engineering",
+      options: [
+        { label: "Backend", value: "Backend", type: "Engineering" },
+        { label: "Frontend", value: "Frontend", type: "Engineering" },
+        { label: "Fullstack", value: "Fullstack", type: "Engineering" },
+        { label: "IOS", value: "IOS", type: "Engineering" },
+        { label: "Flutter", value: "Flutter", type: "Engineering" },
+        { label: "React Native", value: "React Native", type: "Engineering" },
+        { label: "Android", value: "Android", type: "Engineering" },
+        { label: "Tech Lead", value: "Tech Lead", type: "Engineering" },
+        { label: "Dev-Ops", value: "Dev-Ops", type: "Engineering" },
+        { label: "Data Engineer", value: "Data Engineer", type: "Engineering" },
+        { label: "Data Science", value: "Data Science", type: "Engineering" },
+        {
+          label: "Computer-Vision",
+          value: "Computer-Vision",
+          type: "Engineering",
+        },
+        { label: "NLP", value: "NLP", type: "Engineering" },
+        { label: "Deep-Learning", value: "Deep-Learning", type: "Engineering" },
+        { label: "Test / Qa", value: "Test / Qa", type: "Engineering" },
+        { label: "Web3", value: "Web3", type: "Engineering" },
+        { label: "Sre", value: "Sre", type: "Engineering" },
+        {
+          label: "Data-Infrastrcuture",
+          value: "Data-Infrastructure",
+          type: "Engineering",
+        },
+      ],
+    },
+    {
+      label: "Design",
+      options: [
+        { label: "Designer", value: "Designer" },
+        { label: "Design Manager", value: "Design Manager" },
+        { label: "Graphic Designer", value: "Graphic Designer" },
+        { label: "Product Designer", value: "Product Designer" },
+      ],
+    },
+    {
+      label: "Product",
+      options: [{ label: "Product Manager", value: "Product Manager" }],
+    },
+    {
+      label: "Operations",
+      options: [
+        { label: "Operations Manager", value: "Operations Manager" },
+        {
+          label: "Founder's Office/Chief Of Staff",
+          value: "Founder's Office/Chief Of Staff",
+        },
+      ],
+    },
+    {
+      label: "Sales",
+      options: [
+        { label: "Account Executive", value: "Account Executive" },
+        { label: "Account Manager", value: "Account Manager" },
+        {
+          label: "Sales Development Representative",
+          value: "Sales Development Representative",
+        },
+      ],
+    },
+    {
+      label: "Marketing",
+      options: [
+        {
+          label: "Digital Marketing Manager",
+          value: "Digital Marketing Manager",
+        },
+        { label: "Growth Hacker", value: "Growth Hacker" },
+        { label: "Marketing", value: "Marketing" },
+        {
+          label: "Product Marketing Manager",
+          value: "Product Marketing Manager",
+        },
+      ],
+    },
+    {
+      label: "Other Engineering",
+      options: [
+        { label: "Hardware", value: "Hardware" },
+        { label: "Mechanical", value: "Mechanical" },
+        { label: "Systems", value: "Systems" },
+      ],
+    },
+    {
+      label: "Business Analyst",
+      options: [{ label: "Business Analyst", value: "Business Analyst" }],
+    },
+    {
+      label: "Data Analyst",
+      options: [{ label: "Data Analyst", value: "Data Analyst" }],
+    },
+    {
+      label: "Project Manager",
+      options: [{ label: "Project Manager", value: "Project Manager" }],
+    },
+    {
+      label: "Management",
+      options: [{ label: "Management", value: "Management" }],
+    },
+    { label: "Legal", options: [{ label: "Legal", value: "Legal" }] },
+    { label: "Hr", options: [{ label: "Hr", value: "Hr" }] },
+    { label: "Finance", options: [{ label: "Finance", value: "Finance" }] },
+  ],
   employees: [
     {
       label: "1-10",
@@ -120,6 +226,72 @@ export const options = {
     {
       label: "70L",
       value: "70L",
+    },
+  ],
+  tech_stack: [
+    {
+      label: "Python",
+      value: "Python",
+    },
+    {
+      label: "Java",
+      value: "Java",
+    },
+    {
+      label: "GoLang",
+      value: "GoLang",
+    },
+    {
+      label: "Ruby/Rails",
+      value: "Ruby/Rails",
+    },
+    {
+      label: "C++",
+      value: "C++",
+    },
+    {
+      label: "Kotlin",
+      value: "Kotlin",
+    },
+    {
+      label: "Django",
+      value: "Django",
+    },
+    {
+      label: "C#",
+      value: "C#",
+    },
+    {
+      label: "GraphQL",
+      value: "GraphQL",
+    },
+    {
+      label: "Flask",
+      value: "Flask",
+    },
+    {
+      label: "Typescript",
+      value: "Typescript",
+    },
+    {
+      label: "AWS",
+      value: "AWS",
+    },
+    {
+      label: "Javascript",
+      value: "Javascript",
+    },
+    {
+      label: "Rust",
+      value: "Rust",
+    },
+    {
+      label: "NodeJS",
+      value: "NodeJS",
+    },
+    {
+      label: "React",
+      value: "React",
     },
   ],
 };
