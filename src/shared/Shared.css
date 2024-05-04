@@ -1,0 +1,95 @@
+.custom-input-box {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* .select {
+  min-height: 38px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 3px;
+  min-width: 100px;
+} */
+
+.select{
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.select::placeholder{
+  font-size: 14px;
+}
+
+.input-comp-name {
+  padding: 10px;
+  font-family: lexend;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 120px;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 3px;
+  outline: 0px;
+  box-sizing: border-box;
+  cursor: default;
+}
+
+.select input {
+  padding-left: 1px;
+  border: 0;
+  cursor: default;
+  font-size: 12px;
+  outline: 0px;
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  flex: 1;
+  font-size: 12px;
+  /* min-width: fit-content; */
+  font-weight: 300;
+  margin-left: 15px;
+}
+
+.placeholder {
+  padding: 0 10px;
+}
+
+.hr {
+  align-self: stretch;
+  width: 1px;
+  background-color: rgb(204, 204, 204);
+  margin-bottom: 8px;
+  margin-top: 8px;
+  box-sizing: border-box;
+}
+
+.icon-dd {
+  display: flex;
+  color: rgb(204, 204, 204);
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.icon-svg {
+  fill: currentColor;
+  color: rgb(204, 204, 204) !important;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: -50%;
+  left: 0;
+  font-size: 12px;
+}
+
+.select-values {
+  flex: 1;
+}

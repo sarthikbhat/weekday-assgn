@@ -1,0 +1,7 @@
+.filter-outer-box{
+    margin: 2%;
+    margin-top: 2.5%;
+    display: flex;
+    gap: 10px;
+}
+
