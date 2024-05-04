@@ -7,7 +7,6 @@ const Card = ({ job }) => {
     else return `${minSal}K - ${maxSal}K`;
   };
 
-
   return (
     <div className="card-outer">
       <div className="company-header">
@@ -20,13 +19,14 @@ const Card = ({ job }) => {
           <p className="comp-location caps">{job.location}</p>
         </div>
       </div>
+
       <div className="estimated-salary">
         Estimated Salary: {job.salaryCurrencyCode}{" "}
         {getEstimatedSalary(job.minJdSalary, job.maxJdSalary)} ✅
       </div>
+
       <h3 className="job-desc-header">Job Description:</h3>
       <div className="job-desc">{job.jobDetailsFromCompany}</div>
-
       <div className="show-more">Show More</div>
 
       <h2 className="min-exp-header">Minimum Experience</h2>

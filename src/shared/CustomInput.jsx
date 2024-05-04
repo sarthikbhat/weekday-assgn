@@ -13,6 +13,7 @@ const CustomInput = ({
 }) => {
   const [placeholderVisible, setPlaceHolderVisible] = useState(true);
 
+  // Send Value to parent component and set placeholder
   const onInputChange = (value) => {
     if (value && (!!value.length || !!Object.keys(value).length))
       setPlaceHolderVisible(false);

@@ -1,11 +1,11 @@
-.jobs-section{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4rem;
-    margin: 2% 4%;
-    margin-top: 2.5%;
-    flex-flow: wrap;
-    width: 90%;
-    margin: 2.5% auto;
-    /* justify-content: center; */
+.jobs-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  margin: 2% 4%;
+  margin-top: 2.5%;
+  flex-flow: wrap;
+  width: 90%;
+  margin: 2.5% auto;
+  /* justify-content: center; */
 }

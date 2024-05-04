@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useCallback, useState } from "react";
 import "./App.css";
 import Filters from "./components/Filters/Filters";
 import Header from "./components/Header/Header";
@@ -18,9 +17,10 @@ const defaultFilterValue = {
 function App() {
   const [filterValues, setFilterValues] = useState(defaultFilterValue);
 
-  const sendDataToComp = (values) => {
-    setFilterValues({...values});
-  };
+  // Bridge to send data between two siblings
+  const sendDataToComp = useCallback((values) => {
+    setFilterValues({ ...values });
+  },[]);
 
   return (
     <main>

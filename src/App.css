@@ -1,15 +1,8 @@
 @font-face {
-  font-family: 'lexend';
-  src: url(./assets/fonts/lexend.ttf) format('truetype');
+  font-family: "lexend";
+  src: url(./assets/fonts/lexend.ttf) format("truetype");
 }
 
-*{
-  font-family: lexend;
-}
-
-main{
-  /* display: flex;
-  flex-direction: column;
-  gap: 0;
-  align-items: center; */
+* {
+  font-family: lexend, "Times New Roman", Times, serif;
 }

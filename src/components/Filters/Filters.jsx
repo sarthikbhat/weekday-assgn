@@ -1,7 +1,7 @@
 import CustomInput from "../../shared/CustomInput";
 import { options } from "../../assets/static/options.js";
 import "./Filters.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const defaultFilterValue = {
   roles: [],
@@ -17,31 +17,35 @@ const Filters = ({ sendDataToComp }) => {
   const [filterValues, setFilterValues] = useState(defaultFilterValue);
   const [displayTechStack, setDisplayTechStack] = useState(false);
 
-  const handleFilterInput = (type, value) => {
+  // Input handler from child and send data to parent
+  // Applies logic to make Tech Stack filter visible only when Engineering roles is selected.
+  const handleFilterInput = useCallback((type, value) => {
+    console.log("called");
     if (type === "roles") {
       const indexOfTypeEngg = value.findIndex((e) => e.type === "Engineering");
-      setDisplayTechStack(indexOfTypeEngg != -1);
+      setDisplayTechStack(indexOfTypeEngg !== -1);
     }
 
-    if(type==="companies") value=value;
-    else if (Array.isArray(value)) {
-      value = value.map((val) => val.value);
-    } else {
-      value = value?.value || -1;
+    if (type !== "companies") {
+      if (Array.isArray(value)) {
+        value = value.map((val) => val.value.toLowerCase());
+      } else {
+        value = value?.value || -1;
+      }
     }
 
     const stateUpdate = filterValues;
     stateUpdate[type] = value;
 
     setFilterValues(stateUpdate);
-    sendDataToComp(stateUpdate);
-  };
+    sendDataToComp({ data: stateUpdate, filter: type });
+  }, [filterValues,sendDataToComp]);
 
   useEffect(() => {
     if (!displayTechStack) {
       handleFilterInput("tech_stack", []);
     }
-  }, [displayTechStack]);
+  }, [displayTechStack, handleFilterInput]);
 
   return (
     <section className="filter-outer-box">
