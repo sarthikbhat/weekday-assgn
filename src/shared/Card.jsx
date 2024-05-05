@@ -32,7 +32,7 @@ const Card = ({ job }) => {
       <h2 className="min-exp-header">Minimum Experience</h2>
       <p className="min-exp">{job.minExp || 0} years</p>
       <button className="apply-button">
-        <a className="no-decoration" href={job?.jdLink} target="_blank">
+        <a className="no-decoration" rel="noreferrer" href={job?.jdLink} target="_blank">
           ⚡Easy Apply
         </a>
       </button>
