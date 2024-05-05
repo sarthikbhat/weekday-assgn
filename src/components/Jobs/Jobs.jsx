@@ -66,6 +66,7 @@ const Jobs = ({ filters }) => {
       .catch((error) => {
         console.error(error);
         setError("Api Error Occured, please try again");
+        setIsLoading(false)
         setJobs([]);
       });
   }, [jobs, offset]);
@@ -73,8 +74,6 @@ const Jobs = ({ filters }) => {
   //scroll handler to fetch data at 70% of the scroll or when 30% scroll is lef to bottom
   const handleScroll = useCallback(() => {
     if (isLoading) return;
-    if (checkIfFilters(filterData)) return;
-    if (checkIfFilters(filters)) return;
 
     const docElement = document.documentElement;
     const totalHeight = docElement.offsetHeight;
@@ -84,7 +83,7 @@ const Jobs = ({ filters }) => {
     const scrollLeftPercent = scrollLeft * 100;
 
     if (scrollLeftPercent <= 30) fetchData();
-  }, [fetchData, filterData, isLoading, filters]);
+  }, [fetchData, isLoading]);
 
   // helper function to apply filters
   const applyFilters = useCallback(() => {
@@ -100,7 +99,6 @@ const Jobs = ({ filters }) => {
           checkIfRemote(job, filterData)
         );
       });
-      console.log(allDataFiltered);
       if (!!allDataFiltered.length) setfilteredJobs(allDataFiltered);
       else setfilteredJobs(null);
     } else {
@@ -108,11 +106,13 @@ const Jobs = ({ filters }) => {
     }
   }, [jobs, filterData]);
 
-  // Lifecycle hooks for change detections and initial data render
+  // Lifecycle hooks for change detections, event listeners, initial data render and clean up
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [isLoading, applyFilters, handleScroll]);
 
   useEffect(() => {
@@ -144,7 +144,7 @@ const Jobs = ({ filters }) => {
           </div>
         )}
       </div>
-      {(isLoading && filteredJobs) && <div className="loader-circle"></div>}
+      {(isLoading && !jobs.length) && <div className="loader-circle"></div>}
     </section>
   );
 };
