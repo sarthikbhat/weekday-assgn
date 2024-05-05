@@ -197,35 +197,43 @@ export const options = {
   salary: [
     {
       label: "0L",
-      value: "0L",
+      value: "0",
     },
     {
       label: "10L",
-      value: "10L",
+      value: "10",
     },
     {
       label: "20L",
-      value: "20L",
+      value: "20",
     },
     {
       label: "30L",
-      value: "30L",
+      value: "30",
     },
     {
       label: "40L",
-      value: "40L",
+      value: "40",
     },
     {
       label: "50L",
-      value: "50L",
+      value: "50",
     },
     {
       label: "60L",
-      value: "60L",
+      value: "60",
     },
     {
       label: "70L",
-      value: "70L",
+      value: "70",
+    },
+    {
+      label: "80L",
+      value: "80",
+    },
+    {
+      label: "90L",
+      value: "90",
     },
   ],
   tech_stack: [

@@ -2,9 +2,9 @@ import React from "react";
 
 const Card = ({ job }) => {
   const getEstimatedSalary = (minSal, maxSal) => {
-    if (!minSal) return `${maxSal}K`;
-    if (!maxSal) return `${minSal}K`;
-    else return `${minSal}K - ${maxSal}K`;
+    if (!minSal) return `${maxSal}L`;
+    if (!maxSal) return `${minSal}L`;
+    else return `${minSal}L - ${maxSal}L`;
   };
 
   return (
@@ -32,6 +32,7 @@ const Card = ({ job }) => {
       <h2 className="min-exp-header">Minimum Experience</h2>
       <p className="min-exp">{job.minExp || 0} years</p>
       <button className="apply-button">⚡Easy Apply </button>
+      <button className="referral-button">Ask for referral </button>
     </div>
   );
 };

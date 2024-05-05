@@ -1,25 +1,36 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Card from "../../shared/Card";
 import "./Jobs.css";
+import notFound from "../../assets/images/not-found.svg";
+import {
+  checkIfCompanyName,
+  checkIfEmployees,
+  checkIfExperience,
+  checkIfRemote,
+  checkIfRoles,
+  checkIfSalary,
+  checkIfTechStack,
+} from "../../utils/CommonUtils";
+import Error from "../Error/Error";
 
 const Jobs = ({ filters }) => {
   const [jobs, setJobs] = useState([]);
+  const [error, setError] = useState("");
   const [filteredJobs, setfilteredJobs] = useState([]);
   const [filterData, setFilterData] = useState({});
-  const [filterType, setFilterType] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [offset, setOffset] = useState(0);
   const isDataFetched = useRef(false);
 
   const checkIfFilters = (filterz) => {
     if (filterz && !!Object.keys(filterz).length) {
-      if (!!filterz.roles.length) return true;
-      if (!!filterz.employees.length) return true;
-      if (!!filterz.remote.length) return true;
-      if (!!filterz.tech_stack.length) return true;
-      if (!!filterz.companies.length) return true;
-      if (filterz.experience >= 0) return true;
-      if (filterz.salary >= 0) return true;
+      if (!!filterz?.roles.length) return true;
+      if (!!filterz?.employees.length) return true;
+      if (!!filterz?.remote.length) return true;
+      if (!!filterz?.tech_stack.length) return true;
+      if (!!filterz?.companies.length) return true;
+      if (filterz?.experience >= 0) return true;
+      if (filterz?.salary >= 0) return true;
     }
     return false;
   };
@@ -54,7 +65,8 @@ const Jobs = ({ filters }) => {
       })
       .catch((error) => {
         console.error(error);
-        setIsLoading(false);
+        setError("Api Error Occured, please try again");
+        setJobs([]);
       });
   }, [jobs, offset]);
 
@@ -62,113 +74,39 @@ const Jobs = ({ filters }) => {
   const handleScroll = useCallback(() => {
     if (isLoading) return;
     if (checkIfFilters(filterData)) return;
-    if (checkIfFilters(filters.data)) return;
+    if (checkIfFilters(filters)) return;
 
-    const totalHeight = document.documentElement.offsetHeight;
-    const scrollledHeight =
-      window.innerHeight + document.documentElement.scrollTop;
+    const docElement = document.documentElement;
+    const totalHeight = docElement.offsetHeight;
+    const scrollledHeight = window.innerHeight + docElement.scrollTop;
 
-    const scrollLeftPercent =
-      ((totalHeight - scrollledHeight) / totalHeight) * 100;
+    const scrollLeft = (totalHeight - scrollledHeight) / totalHeight;
+    const scrollLeftPercent = scrollLeft * 100;
 
     if (scrollLeftPercent <= 30) fetchData();
-  }, [fetchData,filterData,isLoading,filters.data]);
-
-
+  }, [fetchData, filterData, isLoading, filters]);
 
   // helper function to apply filters
   const applyFilters = useCallback(() => {
     if (checkIfFilters(filterData)) {
-      let allDataFiltered = [];
-      let jobz = [];
-      // let companyFilteredJobs = [];
-      console.log(filteredJobs);
-      if (!!filteredJobs.length) {
-        jobz = [...filteredJobs];
-      } else jobz = [...jobs];
-      console.log(jobz);
+      const allDataFiltered = jobs.filter((job) => {
+        return (
+          checkIfRoles(job, filterData) &&
+          checkIfCompanyName(job, filterData) &&
+          checkIfExperience(job, filterData) &&
+          checkIfSalary(job, filterData) &&
+          checkIfTechStack(job, filterData) &&
+          checkIfEmployees(job, filterData) &&
+          checkIfRemote(job, filterData)
+        );
+      });
       console.log(allDataFiltered);
-      // log
-      // if (!!filterData?.companies?.length) {
-      //   companyFilteredJobs = jobs.filter(
-      //     (job) =>
-      //       job.companyName &&
-      //       job?.companyName
-      //         .toLowerCase()
-      //         .includes(filterData?.companies.toLowerCase())
-      //   );
-      //   allDataFiltered = [...companyFilteredJobs];
-      //   console.log(allDataFiltered);
-      //   jobz = [...allDataFiltered];
-      // } else {
-      // }
-      // Object.keys(filterData).forEach((key) => {
-      switch (filterType) {
-        case "roles":
-          if (!!filterData?.roles?.length) {
-            const roleFilteredJobs = jobz.filter(
-              (job) =>
-                job.jobRole &&
-                filterData?.roles.includes(job?.jobRole.toLowerCase())
-            );
-            console.log(roleFilteredJobs);
-            allDataFiltered = [...roleFilteredJobs];
-          }
-          break;
-        case "experience":
-          if (filterData?.experience >= 0) {
-            const expFilteredJobs = jobz.filter((job) => {
-              if (
-                filterData?.experience >= job?.minExp &&
-                filterData?.experience <= job?.maxExp
-              ) {
-                return true;
-              }
-              return false;
-            });
-            console.log(expFilteredJobs);
-            allDataFiltered = [...allDataFiltered, ...expFilteredJobs];
-          }
-          break;
-        case "employees":
-          break;
-        case "salary":
-          break;
-        case "companies":
-          if (!!filterData?.companies?.length) {
-            const companyFilteredJobs = jobz.filter(
-              (job) =>
-                job.companyName &&
-                job?.companyName
-                  .toLowerCase()
-                  .includes(filterData?.companies.toLowerCase())
-            );
-            console.log(companyFilteredJobs);
-            allDataFiltered = [...allDataFiltered, ...companyFilteredJobs];
-          }
-          break;
-        case "remote":
-          break;
-        case "tech_stack":
-          break;
-        default:
-          break;
-      }
-      // if (!!allDataFiltered.length) {
-      // allDataFiltered = [...allDataFiltered,...companyFilteredJobs];
-      // allDataFiltered = allDataFiltered.filter(
-      //   (value, index, self) =>
-      //     index === self.findIndex((t) => t.jdUid === value.jdUid)
-      // );
-      console.log(allDataFiltered);
-      setfilteredJobs(allDataFiltered);
-      // } else setfilteredJobs(companyFilteredJobs);
-      // });
-      // });
+      if (!!allDataFiltered.length) setfilteredJobs(allDataFiltered);
+      else setfilteredJobs(null);
     } else {
       setfilteredJobs(jobs);
     }
-  }, [jobs, filterData, filterType, filteredJobs]);
+  }, [jobs, filterData]);
 
   // Lifecycle hooks for change detections and initial data render
 
@@ -185,22 +123,28 @@ const Jobs = ({ filters }) => {
 
   useEffect(() => {
     applyFilters();
-  }, [filterData, applyFilters]);
+  }, [jobs, filterData, applyFilters]);
 
   useEffect(() => {
-    applyFilters();
-  }, [jobs, applyFilters]);
-
-  useEffect(() => {
-    setFilterData({ ...filters.data });
-    setFilterType(filters.filter);
+    setFilterData({ ...filters });
   }, [filters]);
 
   return (
-    <section className="jobs-section">
-      {filteredJobs.map((job) => {
-        return <Card job={job} key={job.jdUid} />;
-      })}
+    <section className="hero">
+      {error && <Error errorText={error} />}
+      <div className="jobs-section">
+        {filteredJobs ? (
+          filteredJobs.map((job) => {
+            return <Card job={job} key={job.jdUid} />;
+          })
+        ) : (
+          <div className="not-found-box">
+            <img className="not-found" src={notFound} alt="not-found" />
+            <h3>No Jobs available for this category at the moment</h3>
+          </div>
+        )}
+      </div>
+      {(isLoading && filteredJobs) && <div className="loader-circle"></div>}
     </section>
   );
 };

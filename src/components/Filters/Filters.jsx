@@ -20,7 +20,6 @@ const Filters = ({ sendDataToComp }) => {
   // Input handler from child and send data to parent
   // Applies logic to make Tech Stack filter visible only when Engineering roles is selected.
   const handleFilterInput = useCallback((type, value) => {
-    console.log("called");
     if (type === "roles") {
       const indexOfTypeEngg = value.findIndex((e) => e.type === "Engineering");
       setDisplayTechStack(indexOfTypeEngg !== -1);
@@ -38,7 +37,7 @@ const Filters = ({ sendDataToComp }) => {
     stateUpdate[type] = value;
 
     setFilterValues(stateUpdate);
-    sendDataToComp({ data: stateUpdate, filter: type });
+    sendDataToComp({...stateUpdate});
   }, [filterValues,sendDataToComp]);
 
   useEffect(() => {
